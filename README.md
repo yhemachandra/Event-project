@@ -65,10 +65,19 @@ Event-project/
 
 ## 📸 Screenshots  
 
-Login page 
+### Login page 
 
 <img width="1919" height="1003" alt="Image" src="https://github.com/user-attachments/assets/8a3d40c3-840c-417c-af58-73df306415e3" />
-| Event Listing Page | Event Details | Admin Dashboard |
+
+### Event Listing Page 
+
+<img width="1882" height="868" alt="Image" src="https://github.com/user-attachments/assets/7dce7727-8ed5-450f-a8a2-161e24e8e0a7" />
+
+### Admin Dashboard 
+
+<img width="1904" height="1003" alt="Image" src="https://github.com/user-attachments/assets/11b9c6ba-9a34-49df-ad60-6ec4388cb3bf" />
+
+### Event Details
 
 
 ---
