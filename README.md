@@ -5,6 +5,11 @@ The project is built with **HTML, CSS, and JavaScript** for the frontend and is 
 
 ---
 
+## Live Demo
+https://project-event.netlify.app/event.html
+
+---
+
 ## 📌 Features  
 
 ### **For Users**
