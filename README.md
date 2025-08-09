@@ -77,8 +77,6 @@ Event-project/
 
 <img width="1904" height="1003" alt="Image" src="https://github.com/user-attachments/assets/11b9c6ba-9a34-49df-ad60-6ec4388cb3bf" />
 
-### Event Details
-
 
 ---
 
