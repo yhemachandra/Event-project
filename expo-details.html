@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Startup Expo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #1e3c72 0%, #2a5298 40%, #232526 100%);
+      color: #111827;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+      border: 1.5px solid #e5e7eb;
+      color: #1e293b;
+    }
+    .back-button {
+      display: inline-block;
+      margin-bottom: 10px;
+      background-color: #e5e7eb;
+      color: #1e40af;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 8px rgba(31,38,135,0.10);
+    }
+    .back-button:hover {
+      background-color: #d1d5db;
+      color: #4338ca;
+    }
+    .header { text-align: center; margin-bottom: 30px; }
+    .title {
+      font-size: 40px;
+      font-weight: 900;
+      background: linear-gradient(100deg, #3b26d8 0%, #2c5364 40%, #00c6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-shadow: 0 4px 16px rgba(44,83,100,0.18), 0 1.5px 0 #2966ec;
+    }
+    .subtitle { font-size: 18px; color: #0d0d0e; }
+    .banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      font-size: 15px;
+      color: #4b5563;
+      margin: 20px 0;
+    }
+    .info span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 30px;
+    }
+    .features {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .screen {
+      background: #1f2937;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 30px 0 10px;
+    }
+    .seats {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+      justify-content: center;
+      padding: 20px 0;
+    }
+    .seat {
+      width: 30px;
+      height: 30px;
+      background: #e5e7eb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .seat.selected { background: #1d4ed8; }
+    .seat.occupied { background: #9ca3af; cursor: not-allowed; }
+    .legend {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .legend div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+    .summary {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .confirm-btn {
+      background-color: #16a34a;
+      color: white;
+      padding: 14px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin: 30px auto;
+      display: block;
+    }
+    .confirm-btn:hover {
+      background-color: #22c55e;
+      transform: scale(1.03);
+    }
+
+    /* === MOBILE RESPONSIVENESS === */
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px 10px;
+        padding: 15px;
+      }
+      .title {
+        font-size: 26px;
+        line-height: 1.2;
+      }
+      .subtitle {
+        font-size: 16px;
+      }
+      .info {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      .section-title {
+        font-size: 20px;
+      }
+      .seats {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+      }
+      .seat {
+        width: 26px;
+        height: 26px;
+      }
+      .confirm-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="event.html" class="back-button">← Back to Events</a>
+    <div class="header">
+      <h1 class="title">Startup Expo 2025</h1>
+      <p class="subtitle">Discover innovations, network with startups, and witness the future of technology.</p>
+      <img src="./expo.jpg" alt="Startup Expo Banner" class="banner">
+    </div>
+
+    <div class="info">
+      <span>📅 Saturday, July 27, 2025</span>
+      <span>📍 Bengaluru</span>
+      <span>🚀 100+ Startups</span>
+      <span>👥 5000+ attendees</span>
+    </div>
+
+    <h2 class="section-title">About this Event</h2>
+    <p>
+      "Startup Expo 2025" brings together entrepreneurs, investors, and tech enthusiasts. Explore cutting-edge products, attend keynote talks, and connect with changemakers.
+    </p>
+
+    <h2 class="section-title">Event Features</h2>
+    <div class="features">
+      <div class="badge">Startup Booths</div>
+      <div class="badge">Investor Meets</div>
+      <div class="badge">Tech Talks</div>
+      <div class="badge">Workshops</div>
+      <div class="badge">Networking Zones</div>
+      <div class="badge">Career Fair</div>
+    </div>
+
+    <h2 class="section-title">🎟️ Select Your Seats</h2>
+    <div class="screen">🎤 Main Stage</div>
+    <div class="seats" id="seatContainer"></div>
+
+    <div class="legend">
+      <div><div class="seat"></div> Available</div>
+      <div><div class="seat selected"></div> Selected</div>
+      <div><div class="seat occupied"></div> Occupied</div>
+    </div>
+
+    <div class="summary">
+      Selected Seats: <span id="count">0</span><br>
+      Total Price: ₹<span id="total">0</span>
+    </div>
+
+    <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+  </div>
+
+  <script>
+    const seatContainer = document.getElementById('seatContainer');
+    const count = document.getElementById('count');
+    const total = document.getElementById('total');
+    const seatPrice = 399;
+    const maxSeats = 6;
+    let selectedSeats = [];
+    const occupiedSeats = [2, 10, 18, 27, 40, 59];
+
+    for (let i = 0; i < 60; i++) {
+      const seat = document.createElement('div');
+      seat.classList.add('seat');
+      if (occupiedSeats.includes(i)) {
+        seat.classList.add('occupied');
+      }
+      seat.dataset.index = i;
+      seat.addEventListener('click', () => toggleSeat(seat));
+      seatContainer.appendChild(seat);
+    }
+
+    function toggleSeat(seat) {
+      const index = seat.dataset.index;
+      if (seat.classList.contains('occupied')) return;
+      if (seat.classList.contains('selected')) {
+        seat.classList.remove('selected');
+        selectedSeats = selectedSeats.filter(i => i != index);
+      } else {
+        if (selectedSeats.length >= maxSeats) {
+          alert("You can only book up to 6 seats.");
+          return;
+        }
+        seat.classList.add('selected');
+        selectedSeats.push(index);
+      }
+      updateSummary();
+    }
+
+    function updateSummary() {
+      count.textContent = selectedSeats.length;
+      total.textContent = selectedSeats.length * seatPrice;
+    }
+
+    function confirmBooking() {
+      if (selectedSeats.length === 0) {
+        alert("Please select at least one seat.");
+        return;
+      }
+      localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+      localStorage.setItem("seatTotal", selectedSeats.length * seatPrice);
+      alert("Seats confirmed! Redirecting to payment...");
+      window.location.href = "payment.html";
+    }
+  </script>
+</body>
+</html>

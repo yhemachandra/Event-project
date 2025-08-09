@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookMyEvent</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">BookMyEvents</div>
+      <div class="menu-icon" id="menuIcon">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#events">🎉Events</a></li>
+        <li><a href="./admin-login.html">👤admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="home">
+    <div class="hero">  
+    <div class="hero-content">
+        <h1>Discover Amazing <br><span>Events Near You</span></h1>
+        <p>Book tickets for concerts, festivals, conferences, and more. Your next unforgettable experience is just a click away.</p>
+        <div class="search-box">
+            <input type="text" placeholder="🔍 Search events, artists, venues...">
+            <input type="text" placeholder="📍 Location">
+            <button class="search-btn">📅 Search Events</button>
+        </div>
+    </div>
+</div>
+
+  </section>
+
+  
+  <!-- Browse by Category -->
+  <section class="browse-category">
+    <h1>Browse by Category</h1>
+    <p>Find events that match your interests</p>
+
+    <div class="category-container">
+      <div class="category-card">
+        <div class="icon-circle"><i class="fas fa-music"></i></div>
+        <div class="category-title">Music</div>
+        <div class="category-count">150 events</div>
+      </div>
+
+      <div class="category-card">
+        <div class="icon-circle"><i class="fas fa-briefcase"></i></div>
+        <div class="category-title">Conferences</div>
+        <div class="category-count">85 events</div>
+      </div>
+
+      <div class="category-card">
+        <div class="icon-circle"><i class="fas fa-utensils"></i></div>
+        <div class="category-title">Food & Drink</div>
+        <div class="category-count">120 events</div>
+      </div>
+
+      <div class="category-card">
+        <div class="icon-circle"><i class="fas fa-gamepad"></i></div>
+        <div class="category-title">Entertainment</div>
+        <div class="category-count">95 events</div>
+      </div>
+
+      <div class="category-card">
+        <div class="icon-circle"><i class="fas fa-users"></i></div>
+        <div class="category-title">Networking</div>
+        <div class="category-count">70 events</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="conference-section">
+      <div class="conference-header">
+        <h1>Exciting Events Ahead<br>Mark Your Calendar</h1>
+        <p>Stay tuned for an unforgettable experience. Book your spot now and be part of the magic—music, food, fun, and more!</p>
+      </div>
+      <div class="conference-days">
+        <div class="day-card">
+          <h2>1st Day <span>20 July , 2025</span></h2>
+        </div>
+        <div class="day-card">
+          <h2>2nd Day <span>31 July , 2025</span></h2>
+        </div>
+        <div class="day-card">
+          <h2>3rd Day <span>15 August , 2025</span></h2>
+        </div>
+      </div>
+    </div>
+
+    <section class="featured-events">
+      <h2 class="section-title">Featured Events</h2>
+      <p class="section-subtitle">
+        Experience the most exciting events in your city — from electrifying concerts to inspiring talks and delicious food fests. There's something for everyone!
+      </p>
+    </section>
+
+    <section id="events" class="event-card-grid">
+      <div class="card">
+        <img src="./event 1 logo.jpeg" alt="Tiranga Utsav" />
+        <div class="card-info">
+          <h3>Tiranga Utsav</h3>
+          <p>📅 15 Aug 2025<br>📍Delhi</p>
+          <a href="./event-details.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./music1.jpeg" alt="Rhythm Nights" />
+        <div class="card-info">
+          <h3>Rhythm Nights</h3>
+          <p>📅 20 July 2025<br>📍Hyderabad</p>
+          <a href="./rhythm-details.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./startuplogo.jpeg" alt="Event" />
+        <div class="card-info">
+          <h3>Startup Expo 2025</h3>
+          <p>📅 27 July 2025<br>📍Bangalore</p>
+          <a href="./expo-details.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./food.jpeg" alt="Event" />
+        <div class="card-info">
+          <h3>Street Food Festival</h3>
+          <p>📅 31 July 2025<br>📍Bangalore</p>
+          <a href="./food-event.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./run.jpeg" alt="Event" />
+        <div class="card-info">
+          <h3>5k Glow Run</h3>
+          <p>📅 23 Aug 2025<br>📍Hyderabad</p>
+          <a href="./5k-event.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Catwalk-logo.jpeg" alt="Event" />
+        <div class="card-info">
+          <h3>Catwalk Carnival</h3>
+          <p>📅 29 Aug 2025<br>📍Mumbai</p>
+          <a href="./Catwalk-event.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="trusted-section">
+  <div class="trusted-header">
+    <h2>Trusted by Millions</h2>
+    <p>Join the world's largest event booking platform</p>
+  </div>
+  <div class="trusted-stats">
+    <div class="stat-box">
+      <h3>50K+</h3>
+      <p class="stat-title">Events Hosted</p>
+      <p class="stat-desc">Successfully organized events</p>
+    </div>
+    <div class="stat-box">
+      <h3>2M+</h3>
+      <p class="stat-title">Happy Customers</p>
+      <p class="stat-desc">Satisfied event attendees</p>
+    </div>
+    <div class="stat-box">
+      <h3>500+</h3>
+      <p class="stat-title">Cities Worldwide</p>
+      <p class="stat-desc">Global event coverage</p>
+    </div>
+    <div class="stat-box">
+      <h3>99.9%</h3>
+      <p class="stat-title">Uptime</p>
+      <p class="stat-desc">Reliable platform performance</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+  <div class="footer-container">
+
+    <!-- Left: Brand Section -->
+    <div class="footer-left">
+      <h2 class="footer-logo">📅 BookMyEvents</h2>
+      <p class="footer-desc">
+        Your premier destination for discovering and booking amazing events. <br>
+        From concerts to conferences, we bring you closer to experiences that matter.
+      </p>
+      <div class="footer-social">
+  <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+  <!-- <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a> -->
+</div>
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    </div>
+
+    <!-- Right: Links & Support -->
+    <div class="footer-right">
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Browse Events</a></li>
+          <li><a href="#">Create Event</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-support">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>📍 Hyderabad, India</li>
+          <li>📧 support@bookmyevents.com</li>
+          <li>📞 +91 98765 43210</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    © 2025 BookMyEvents. All rights reserved. Built with ❤️ for event lovers.
+  </div>
+</footer>
+
+
+  <script>
+    const menuIcon = document.getElementById('menuIcon');
+    const navLinks = document.getElementById('navLinks');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

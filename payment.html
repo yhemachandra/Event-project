@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment - Event Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #252b61;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #252b61;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    button {
+      background-color: #252b61;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a1f4f;
+    }
+
+    #ticket {
+      opacity: 0;
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      padding: 25px;
+      background: #0d1117;
+      border-radius: 14px;
+      text-align: center;
+      border: 2px solid #58a6ff;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+    }
+
+    #ticket h2 {
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    #ticket p {
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    #ticket img {
+      margin-top: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(88, 166, 255, 0.5);
+      width: 220px;
+      height: 220px;
+    }
+
+    .payment-details {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="eventTitle">Booking for:</h2>
+
+    <div class="input-group">
+      <label>Your Name</label>
+      <input type="text" id="userName" required />
+    </div>
+
+    <div class="input-group">
+      <label>Your Email</label>
+      <input type="email" id="userEmail" required />
+    </div>
+
+    <div class="input-group">
+      <label>Payment Method</label>
+      <select id="paymentMethod">
+        <option value="">-- Select --</option>
+        <option value="UPI">UPI</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Net Banking">Net Banking</option>
+      </select>
+    </div>
+
+    <!-- UPI Details -->
+    <div id="upiDetails" class="payment-details">
+      <div class="input-group">
+        <label>UPI ID</label>
+        <input type="text" id="upiId" placeholder="e.g. yourname@upi" />
+      </div>
+    </div>
+
+      <!-- Credit Card Details -->
+<div id="cardDetails" class="payment-details">
+  <div class="input-group">
+    <label>Card Number</label>
+    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" />
+  </div>
+  <div class="input-group">
+    <label>Expiry Date</label>
+    <input type="text" id="expiryDate" placeholder="MM/YY" />
+  </div>
+  <div class="input-group">
+    <label>CVV</label>
+    <input type="password" id="cvv" placeholder="123" maxlength="3" />
+  </div>
+</div>
+
+    <!-- Net Banking Details -->
+    <div id="netBankingDetails" class="payment-details">
+      <div class="input-group">
+        <label>Select Bank</label>
+        <select id="bankSelect">
+          <option value="">-- Choose Bank --</option>
+          <option value="SBI">State Bank of India</option>
+          <option value="HDFC">HDFC Bank</option>
+          <option value="ICICI">ICICI Bank</option>
+          <option value="AXIS">AXIS Bank</option>
+        </select>
+
+      </div>
+    </div>
+
+    <p>🎫 General Tickets: <strong id="generalCount">0</strong></p>
+    <p>🎖️ VIP Tickets: <strong id="vipCount">0</strong></p>
+    <p>💰 Total Amount: <strong id="totalAmount">₹0.00</strong></p>
+
+    <button id="completePayment">Complete Payment</button>
+
+    <!-- Back Button -->
+    <button id="goBackBtn" style="margin-top: 20px; background-color: #252b61;">
+      ⬅️ Back
+    </button>
+
+    <!-- Hidden ticket preview for capture -->
+    <div id="ticket">
+      <h2>Your Digital Ticket</h2>
+      <p>Show this at the entry gate</p>
+      <img id="qrCode" src="https://res.cloudinary.com/dvqa9j9ky/image/upload/v1753765505/qr_code_zg9izv.png" alt="QR Code" />
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init("Ax7q03YgAkXu7iTNh"); // Your EmailJS public key
+
+      const queryParams = new URLSearchParams(window.location.search);
+      const eventName = queryParams.get("event") || "Event";
+      document.getElementById("eventTitle").textContent = `Booking for: ${eventName}`;
+
+      const general = parseInt(localStorage.getItem("generalTickets")) || 1;
+      const vip = parseInt(localStorage.getItem("vipTickets")) || 1;
+      const total = parseFloat(localStorage.getItem("totalAmount")) || 398;
+
+      document.getElementById("generalCount").textContent = general;
+      document.getElementById("vipCount").textContent = vip;
+      document.getElementById("totalAmount").textContent = `₹${total.toFixed(2)}`;
+
+      const completePaymentBtn = document.getElementById("completePayment");
+
+      completePaymentBtn.addEventListener("click", function () {
+        completePaymentBtn.disabled = true;
+        completePaymentBtn.textContent = "Processing...";
+
+        const userName = document.getElementById("userName").value.trim();
+        const userEmail = document.getElementById("userEmail").value.trim();
+        const paymentMethod = document.getElementById("paymentMethod").value;
+
+        if (!userName || !userEmail) {
+          alert("Please enter your name and email.");
+          completePaymentBtn.disabled = false;
+          completePaymentBtn.textContent = "Complete Payment";
+          return;
+        }
+
+        const ticketDiv = document.getElementById("ticket");
+        const qrImg = document.getElementById("qrCode");
+
+        if (!qrImg.complete) {
+          qrImg.onload = proceedWithCapture;
+        } else {
+          proceedWithCapture();
+        }
+
+        function proceedWithCapture() {
+          html2canvas(ticketDiv, {
+            scale: 2,
+            backgroundColor: "#0d1117"
+          }).then(function (canvas) {
+            const ticketImageURL = canvas.toDataURL("image/png", 0.9);
+
+            const templateParams = {
+              to_name: userName,
+              email: userEmail,
+              event_name: eventName,
+              ticket_general: general,
+              ticket_vip: vip,
+              total_amount: `₹${total.toFixed(2)}`,
+              payment_method: paymentMethod,
+              ticket_image: ticketImageURL,
+              ticket_qr_url: "https://res.cloudinary.com/dvqa9j9ky/image/upload/v1753765505/qr_code_zg9izv.png"
+            };
+
+            emailjs.send("service_duc25qa", "template_qeoufj4", templateParams)
+              .then(function () {
+                alert("✅ Payment successful! Ticket has been emailed.");
+                window.location.href = "event.html";
+              }, function (error) {
+                console.error("EmailJS Error:", error);
+                alert("⚠️ Payment successful, but failed to send confirmation email.");
+                completePaymentBtn.disabled = false;
+                completePaymentBtn.textContent = "Complete Payment";
+              });
+          });
+        }
+      });
+
+      // Back button functionality
+      document.getElementById("goBackBtn").addEventListener("click", function () {
+        window.location.href = "event.html";
+      });
+
+
+      // Reuse for validation
+const numberOnly = /^[0-9]+$/;
+
+// Credit Card Validation
+if (paymentMethod === "Credit Card") {
+  const cardNumber = document.getElementById("cardNumber").value.replace(/\s/g, "");
+  const expiryDate = document.getElementById("expiryDate").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
+
+  if (!cardNumber.match(numberOnly) || cardNumber.length !== 16) {
+    alert("Card number must be 16 digits and contain only numbers.");
+    resetButton();
+    return;
+  }
+
+  if (!cvv.match(numberOnly) || cvv.length !== 3) {
+    alert("CVV must be 3 digits and contain only numbers.");
+    resetButton();
+    return;
+  }
+
+  if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+    alert("Expiry Date must be in MM/YY format.");
+    resetButton();
+    return;
+  }
+}
+
+// UPI Validation
+if (paymentMethod === "UPI") {
+  const upiId = document.getElementById("upiId").value.trim();
+  if (!/^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/.test(upiId)) {
+    alert("Please enter a valid UPI ID (e.g., name@bank).");
+    resetButton();
+    return;
+  }
+}
+
+// Net Banking Validation
+if (paymentMethod === "Net Banking") {
+  const bank = document.getElementById("bankSelect").value;
+  if (!bank) {
+    alert("Please select a bank for Net Banking.");
+    resetButton();
+    return;
+  }
+}
+
+// Reset button helper
+function resetButton() {
+  completePaymentBtn.disabled = false;
+  completePaymentBtn.textContent = "Complete Payment";
+}
+
+
+      // Show/hide payment fields
+      const methodSelect = document.getElementById("paymentMethod");
+      const upi = document.getElementById("upiDetails");
+      const card = document.getElementById("cardDetails");
+      const net = document.getElementById("netBankingDetails");
+
+      methodSelect.addEventListener("change", function () {
+        upi.style.display = "none";
+        card.style.display = "none";
+        net.style.display = "none";
+
+        if (this.value === "UPI") upi.style.display = "block";
+        if (this.value === "Credit Card") card.style.display = "block";
+        if (this.value === "Net Banking") net.style.display = "block";
+      });
+    });
+  </script>
+</body>
+</html>

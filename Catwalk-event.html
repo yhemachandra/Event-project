@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catwalk Carnival</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #1b1b1f 0%, #4b0082 40%, #2c2c34 100%);
+      color: #f4f4f5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08);
+      border: 1.5px solid #e5e7eb;
+      color: #1e293b;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      background-color: #e5e7eb;
+      color: #6b21a8;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #d1d5db;
+    }
+
+    .header { text-align: center; margin-bottom: 30px; }
+
+    .title {
+      font-size: 40px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #c084fc 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      text-shadow: 0 4px 16px rgba(100, 0, 200, 0.18), 0 1.5px 0 #6b21a8;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #374151;
+      margin-top: 10px;
+    }
+
+    .banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+      font-size: 16px;
+      color: #4b5563;
+    }
+
+    .info span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 30px;
+    }
+
+    .features {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      background-color: #ede9fe;
+      color: #7e22ce;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .screen {
+      background: #1f2937;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 30px 0 10px;
+    }
+
+    .seats {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .seat {
+      width: 30px;
+      height: 30px;
+      background: #e5e7eb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .seat.selected { background: #9333ea; }
+    .seat.occupied { background: #9ca3af; cursor: not-allowed; }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .legend div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .summary {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .confirm-btn {
+      background-color: #7e22ce;
+      color: white;
+      padding: 14px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin: 30px auto;
+      display: block;
+    }
+
+    .confirm-btn:hover {
+      background-color: #9333ea;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 900px) {
+      .seats {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .title { font-size: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .seats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .title { font-size: 26px; }
+      .subtitle { font-size: 15px; }
+      .section-title { font-size: 20px; }
+      .info { font-size: 14px; gap: 10px; }
+      .confirm-btn { font-size: 16px; padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="event.html" class="back-button">← Back to Events</a>
+    <div class="header">
+      <h1 class="title">Catwalk Carnival 2025</h1>
+      <p class="subtitle">A glamorous evening of fashion, lights, and runway magic!</p>
+      <img src="./Catwalk.jpeg" alt="Catwalk Carnival Banner" class="banner">
+    </div>
+
+    <div class="info">
+      <span>📅 Friday, August 29, 2025</span>
+      <span>⏰ 6:30 PM – 10:30 PM</span>
+      <span>📍 Jio World Convention Centre, Mumbai</span>
+      <span>⭐ 4.8 (180 reviews)</span>
+    </div>
+
+    <h2 class="section-title">About this Event</h2>
+    <p>
+      Witness the glam, glitz, and glitter at the biggest fashion extravaganza of the year! "Catwalk Carnival 2025" brings together top designers,
+      runway icons, and style enthusiasts under one dazzling roof. From haute couture showcases to interactive style zones — it's more than a show, it's a fashion celebration!
+    </p>
+
+    <h2 class="section-title">Event Features</h2>
+    <div class="features">
+      <div class="badge">Designer Showcases</div>
+      <div class="badge">Celebrity Appearances</div>
+      <div class="badge">Live Music</div>
+      <div class="badge">Fashion Photo Booth</div>
+      <div class="badge">Red Carpet Access</div>
+      <div class="badge">Style Lounge</div>
+    </div>
+
+    <h2 class="section-title">🎟️ Reserve Your Seats</h2>
+    <div class="screen">✨ Runway Front</div>
+    <div class="seats" id="seatContainer"></div>
+
+    <div class="legend">
+      <div><div class="seat"></div> Available</div>
+      <div><div class="seat selected"></div> Selected</div>
+      <div><div class="seat occupied"></div> Occupied</div>
+    </div>
+
+    <div class="summary">
+      Selected Seats: <span id="count">0</span><br>
+      Total Price: ₹<span id="total">0</span>
+    </div>
+
+    <button class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+  </div>
+
+  <script>
+    const seatContainer = document.getElementById('seatContainer');
+    const count = document.getElementById('count');
+    const total = document.getElementById('total');
+    const seatPrice = 399;
+    const maxSeats = 6;
+    let selectedSeats = [];
+    const occupiedSeats = [2, 5, 12, 18, 27, 33, 41, 55];
+
+    for (let i = 0; i < 60; i++) {
+      const seat = document.createElement('div');
+      seat.classList.add('seat');
+      if (occupiedSeats.includes(i)) {
+        seat.classList.add('occupied');
+      }
+      seat.dataset.index = i;
+      seat.addEventListener('click', () => toggleSeat(seat));
+      seatContainer.appendChild(seat);
+    }
+
+    function toggleSeat(seat) {
+      const index = seat.dataset.index;
+      if (seat.classList.contains('occupied')) return;
+      if (seat.classList.contains('selected')) {
+        seat.classList.remove('selected');
+        selectedSeats = selectedSeats.filter(i => i != index);
+      } else {
+        if (selectedSeats.length >= maxSeats) {
+          alert("You can only book up to 6 seats.");
+          return;
+        }
+        seat.classList.add('selected');
+        selectedSeats.push(index);
+      }
+      updateSummary();
+    }
+
+    function updateSummary() {
+      count.textContent = selectedSeats.length;
+      total.textContent = selectedSeats.length * seatPrice;
+    }
+
+    function confirmBooking() {
+      if (selectedSeats.length === 0) {
+        alert("Please select at least one seat.");
+        return;
+      }
+      localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+      localStorage.setItem("seatTotal", selectedSeats.length * seatPrice);
+      alert("Seats confirmed! Redirecting to payment...");
+      window.location.href = "payment.html";
+    }
+  </script>
+</body>
+</html>
